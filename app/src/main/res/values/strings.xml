@@ -4,4 +4,6 @@
     <string name="continue_text">Continue</string>
     <string name="snow_trails">Snow Trails</string>
     <string name="main_image_for_title_screen">main image for title screen</string>
+    <string name="password_label">Password</string>
+    <string name="user_name_label">User Name</string>
 </resources>

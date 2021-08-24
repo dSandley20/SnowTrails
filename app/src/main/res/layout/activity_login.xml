@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/log_in_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="@+id/password_login_input"
+        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintStart_toStartOf="@+id/password_input_label"
+        app:layout_constraintTop_toBottomOf="@+id/password_login_input" />
+
+    <EditText
+        android:id="@+id/username_login_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="60dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:labelFor="@id/username_input_label"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/password_login_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="textPassword"
+        android:labelFor="@id/password_input_label"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/username_login_input"
+        app:layout_constraintTop_toBottomOf="@+id/username_login_input" />
+
+    <TextView
+        android:id="@+id/username_input_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:labelFor="@id/username_login_input"
+        android:text="@string/user_name_label"
+        app:layout_constraintBottom_toBottomOf="@+id/username_login_input"
+        app:layout_constraintEnd_toStartOf="@+id/username_login_input"
+        app:layout_constraintTop_toTopOf="@+id/username_login_input" />
+
+    <TextView
+        android:id="@+id/password_input_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:labelFor="@id/password_login_input"
+        android:text="@string/password_label"
+        app:layout_constraintBottom_toBottomOf="@+id/password_login_input"
+        app:layout_constraintEnd_toEndOf="@+id/username_input_label"
+        app:layout_constraintTop_toTopOf="@+id/password_login_input" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
