@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SnowTrails</string>
+    <string name="log_in">Log In</string>
+    <string name="continue_text">Continue</string>
+    <string name="snow_trails">Snow Trails</string>
+    <string name="main_image_for_title_screen">main image for title screen</string>
 </resources>
