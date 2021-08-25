@@ -38,11 +38,8 @@ class Api (private val context : Context) {
         queue.add(stringRequest)
     }
 
-    fun makeRequest(requestType: Int, endUrl: String){
+    fun makeRequest(requestType: Int, endUrl: String, postData : HashMap<*, *>){
 
-        val requestBody : JSONObject = JSONObject()
-        requestBody.put("username", "foo")
-        requestBody.put("password", "foo")
         val stringRequest : StringRequest =
             object : StringRequest(requestType, (startingUrl + endUrl),
                 Response.Listener { response ->
@@ -59,13 +56,7 @@ class Api (private val context : Context) {
                     return "application/json"
                 }
                 override fun getBody(): ByteArray {
-                    //TODO format as JSON -> move to util file so we can just pass in data as needed
-                    val params2 = HashMap<String, String>()
-                    //TODO don't have this hardcoded
-                    params2.put("username","foo" )
-                    params2.put("password", "foo")
-                    println(params2)
-                    return JSONObject(params2 as Map<String, String>).toString().toByteArray()
+                    return JSONObject(postData as Map<String, String>).toString().toByteArray()
                 }
 
             }

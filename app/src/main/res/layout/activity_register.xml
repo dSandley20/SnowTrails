@@ -1,6 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/password_register_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:text="@string/password_label"
+        app:layout_constraintEnd_toEndOf="@+id/email_register_input"
+        app:layout_constraintTop_toBottomOf="@+id/email_register_input"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <EditText
+        android:id="@+id/email_register_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:labelFor="@id/email_register_label"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/username_register_input"
+        app:layout_constraintTop_toBottomOf="@+id/username_register_input" />
+
+    <EditText
+        android:id="@+id/username_register_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="@string/user_name_label"
+        app:layout_constraintEnd_toEndOf="@+id/name_register_input"
+        app:layout_constraintTop_toBottomOf="@+id/name_register_input"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <EditText
+        android:id="@+id/name_register_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:labelFor="@id/name_register_label"
+        android:minHeight="48dp"
+        android:text="@string/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/agree_to_emails_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:minHeight="48dp"
+        android:text="@string/send_me_emails_about_the_platform"
+        app:layout_constraintEnd_toEndOf="@+id/password_register_input"
+        app:layout_constraintTop_toBottomOf="@+id/password_register_input" />
+
+    <Button
+        android:id="@+id/create_account_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/register"
+        app:layout_constraintEnd_toEndOf="@+id/agree_to_emails_switch"
+        app:layout_constraintTop_toBottomOf="@+id/agree_to_emails_switch" />
+
+    <TextView
+        android:id="@+id/name_register_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:labelFor="@id/name_register_input"
+        android:text="@string/name"
+        app:layout_constraintBottom_toBottomOf="@+id/name_register_input"
+        app:layout_constraintEnd_toStartOf="@+id/name_register_input"
+        app:layout_constraintTop_toTopOf="@+id/name_register_input"
+        app:layout_constraintVertical_bias="0.517" />
+
+    <TextView
+        android:id="@+id/username_register_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/user_name_label"
+        app:layout_constraintBottom_toBottomOf="@+id/username_register_input"
+        app:layout_constraintEnd_toStartOf="@+id/username_register_input"
+        app:layout_constraintTop_toTopOf="@+id/username_register_input"
+        app:layout_constraintVertical_bias="0.31" />
+
+    <TextView
+        android:id="@+id/email_register_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:labelFor="@id/email_register_input"
+        android:text="@string/email"
+        app:layout_constraintBottom_toBottomOf="@+id/email_register_input"
+        app:layout_constraintEnd_toStartOf="@+id/email_register_input"
+        app:layout_constraintTop_toTopOf="@+id/email_register_input"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/password_register_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/password_label"
+        app:layout_constraintBottom_toBottomOf="@+id/password_register_input"
+        app:layout_constraintEnd_toStartOf="@+id/password_register_input"
+        app:layout_constraintTop_toTopOf="@+id/password_register_input" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,4 +6,11 @@
     <string name="main_image_for_title_screen">main image for title screen</string>
     <string name="password_label">Password</string>
     <string name="user_name_label">User Name</string>
+    <string name="submit">Submit</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="name">Name</string>
+    <string name="send_me_emails_about_the_platform">Send me emails about the platform</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
 </resources>
