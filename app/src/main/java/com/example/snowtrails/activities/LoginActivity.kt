@@ -26,15 +26,16 @@ class LoginActivity : AppCompatActivity (){
     }
 
 
-    fun submitLogin(){
+    private fun submitLogin(){
         var api = Api(this)
         var loginData = HashMap<String, String>()
         loginData.put("username", binding.usernameLoginInput.text.toString())
         loginData.put("password", binding.passwordLoginInput.text.toString())
-        api.makeRequest(api.getRequestType("POST"), "/createuser", loginData)
+        api.makeRequest(api.getRequestType("POST"), "/authenticate", loginData)
+        //TODO set JWT and move to locations activity and error messages
     }
 
-    fun goToRegister(){
+    private fun goToRegister(){
         var intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
