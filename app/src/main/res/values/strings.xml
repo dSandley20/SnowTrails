@@ -9,8 +9,6 @@
     <string name="submit">Submit</string>
     <string name="register">Register</string>
     <string name="name">Name</string>
-    <string name="name">Name</string>
     <string name="send_me_emails_about_the_platform">Send me emails about the platform</string>
-    <string name="register">Register</string>
     <string name="email">Email</string>
 </resources>

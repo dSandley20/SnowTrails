@@ -39,7 +39,7 @@ class Api (private val context : Context) {
     }
 
     fun makeRequest(requestType: Int, endUrl: String, postData : HashMap<*, *>){
-
+        println(postData)
         val stringRequest : StringRequest =
             object : StringRequest(requestType, (startingUrl + endUrl),
                 Response.Listener { response ->

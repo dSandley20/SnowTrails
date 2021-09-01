@@ -48,7 +48,9 @@
         android:id="@+id/name_register_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:labelFor="@id/name_register_label"
@@ -66,6 +68,7 @@
         android:minHeight="48dp"
         android:text="@string/send_me_emails_about_the_platform"
         app:layout_constraintEnd_toEndOf="@+id/password_register_input"
+        app:layout_constraintStart_toStartOf="@+id/password_register_label"
         app:layout_constraintTop_toBottomOf="@+id/password_register_input" />
 
     <Button
@@ -81,11 +84,13 @@
         android:id="@+id/name_register_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="16dp"
         android:labelFor="@id/name_register_input"
         android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="@+id/name_register_input"
         app:layout_constraintEnd_toStartOf="@+id/name_register_input"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/name_register_input"
         app:layout_constraintVertical_bias="0.517" />
 
@@ -98,6 +103,7 @@
         android:text="@string/user_name_label"
         app:layout_constraintBottom_toBottomOf="@+id/username_register_input"
         app:layout_constraintEnd_toStartOf="@+id/username_register_input"
+        app:layout_constraintStart_toStartOf="@+id/name_register_label"
         app:layout_constraintTop_toTopOf="@+id/username_register_input"
         app:layout_constraintVertical_bias="0.31" />
 
@@ -110,6 +116,7 @@
         android:text="@string/email"
         app:layout_constraintBottom_toBottomOf="@+id/email_register_input"
         app:layout_constraintEnd_toStartOf="@+id/email_register_input"
+        app:layout_constraintStart_toStartOf="@+id/username_register_label"
         app:layout_constraintTop_toTopOf="@+id/email_register_input"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -121,6 +128,7 @@
         android:text="@string/password_label"
         app:layout_constraintBottom_toBottomOf="@+id/password_register_input"
         app:layout_constraintEnd_toStartOf="@+id/password_register_input"
+        app:layout_constraintStart_toStartOf="@+id/email_register_label"
         app:layout_constraintTop_toTopOf="@+id/password_register_input" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
