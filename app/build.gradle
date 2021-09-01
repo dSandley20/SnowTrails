@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -50,8 +51,7 @@ dependencies {
 
     // To use Kotlin annotation processing tool (kapt)
     kapt("androidx.room:room-compiler:2.3.0")
-    // To use Kotlin Symbolic Processing (KSP)
-    ksp("androidx.room:room-compiler:")
+
 
 
 }
