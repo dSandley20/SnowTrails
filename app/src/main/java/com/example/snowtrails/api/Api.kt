@@ -4,13 +4,20 @@ import android.content.Context
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.RequestFuture
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.snowtrails.activities.LoginActivity
 import org.json.JSONObject
 
-class Api (private val context : Context) {
+
+
+class Api(private val context: Context) {
     private val queue = Volley.newRequestQueue(context)
     private val startingUrl: String = "http://10.0.2.2:8080"
+
     /**
      * Returns the request type -> to be used with the other function in the Api class
      */
@@ -32,35 +39,38 @@ class Api (private val context : Context) {
             { response ->
                 //console log the response just as proof as concept
                 println(response)
+
             },
             { err -> println(err) })
         // Add the request to the RequestQueue.
         queue.add(stringRequest)
     }
 
-    fun makeRequest(requestType: Int, endUrl: String, postData : HashMap<*, *>){
-        println(postData)
-        val stringRequest : StringRequest =
-            object : StringRequest(requestType, (startingUrl + endUrl),
-                Response.Listener { response ->
-                    // response
-                    var strResp = response.toString()
-                    Log.d("API", strResp)
-                },
-                Response.ErrorListener { error ->
-                    Log.d("API", "error => $error")
-                }
-            )
-            {
-                override fun getBodyContentType(): String {
-                    return "application/json"
-                }
-                override fun getBody(): ByteArray {
-                    return JSONObject(postData as Map<String, String>).toString().toByteArray()
-                }
+    public interface VolleyResponseLister{
+        fun onResponse(result: JSONObject) {}
 
+        fun onError(result: VolleyError){}
+
+        fun setContext(context: Context){}
+    }
+
+    /**
+     * callback param is a anonymous object that is based off the VolleyResponseListener to create callbaks
+     */
+    fun makeRequest(
+        requestType: Int,
+        endUrl: String,
+        postData: JSONObject,
+        callback: VolleyResponseLister
+    ) {
+        val jsonObjectRequest = JsonObjectRequest(requestType, (startingUrl + endUrl), postData,
+            { response ->
+                callback.onResponse(response)
             }
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest)
+            , { error ->
+               callback.onError(error)
+            }
+        )
+        queue.add(jsonObjectRequest)
     }
 }
