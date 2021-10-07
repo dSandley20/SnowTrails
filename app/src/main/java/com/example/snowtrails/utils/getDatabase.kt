@@ -7,6 +7,6 @@ import com.example.snowtrails.room.TrailsDatabase
 
 class getDatabase() {
     fun returnDB(context: Context): TrailsDatabase {
-        return Room.databaseBuilder(context, TrailsDatabase::class.java, "trailsDB").build()
+        return Room.databaseBuilder(context, TrailsDatabase::class.java, "trailsDB").allowMainThreadQueries().build()
     }
 }

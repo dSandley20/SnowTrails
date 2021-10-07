@@ -1,6 +1,5 @@
 package com.example.snowtrails.activities
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,6 +10,8 @@ import com.example.snowtrails.databinding.ActivityLoginBinding
 import com.example.snowtrails.room.entities.AuthenticatedUser
 import com.example.snowtrails.utils.getDatabase
 import org.json.JSONObject
+import com.google.gson.JsonElement
+import com.google.gson.JsonParser
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -61,8 +62,18 @@ class LoginActivity : AppCompatActivity() {
         //TODO set JWT and move to locations activity and error messages
         val db = getDatabase().returnDB(this)
         val stringJWT: String = result.get("jwt").toString()
+        val userJson = JsonParser.parseString(result.get("user").toString()).asJsonObject
         db.getAuthUserDao()
-            .setAuthUser(AuthenticatedUser(1, "dan", "sand", "dan@gmail.com", "dan1", stringJWT))
+            .setAuthUser(
+                AuthenticatedUser(
+                    userJson.get("id").toString(),
+                    userJson.get("firstName").toString(),
+                    userJson.get("lastName").toString(),
+                    userJson.get("email").toString(),
+                    userJson.get("userName").toString(),
+                    stringJWT
+                )
+            )
         //goes to the main locations activity
         //var intent = Intent(this, /*Whatever activity this is going to be called */ )
         //startActivity(intent)
