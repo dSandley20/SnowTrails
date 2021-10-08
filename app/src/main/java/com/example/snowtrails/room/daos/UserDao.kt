@@ -9,11 +9,11 @@ import com.example.snowtrails.room.entities.User
 @Dao
 interface UserDao {
     @Insert
-    fun insertAll (vararg users : User)
+    suspend fun insertAll (vararg users : User)
 
     @Delete
-    fun delete (user : User)
+    suspend fun delete (user : User)
 
     @Query("SELECT * FROM user")
-    fun getAll(): List<User>
+    suspend fun getAll(): List<User>
 }

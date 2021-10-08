@@ -10,11 +10,11 @@ import com.example.snowtrails.room.entities.User
 @Dao
 interface AuthenticatedUserDao {
     @Insert
-    fun setAuthUser(AuthUser: AuthenticatedUser)
+    suspend fun setAuthUser(AuthUser: AuthenticatedUser)
 
     @Delete
-    fun deleteAuthUser(AuthUser: AuthenticatedUser)
+    suspend fun deleteAuthUser(AuthUser: AuthenticatedUser)
 
     @Query("SELECT * FROM authenticateduser")
-    fun getAll(): List<AuthenticatedUser>
+    suspend fun getAll(): List<AuthenticatedUser>
 }
