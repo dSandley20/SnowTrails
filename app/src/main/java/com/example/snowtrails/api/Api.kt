@@ -5,11 +5,9 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.RequestFuture
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
+import com.android.volley.toolbox.*
 import com.example.snowtrails.activities.LoginActivity
+import org.json.JSONArray
 import org.json.JSONObject
 
 
@@ -34,14 +32,22 @@ class Api(private val context: Context) {
         return requestType
     }
 
-    fun getRequest(requestType: Int, endUrl: String) {
-        val stringRequest = StringRequest(requestType, (startingUrl + endUrl),
+    fun getRequestArray(requestType: Int, endUrl: String, callback: VolleyArrayResponseListener) {
+        val stringRequest = JsonArrayRequest(requestType, (startingUrl + endUrl), null,
             { response ->
-                //console log the response just as proof as concept
-                println(response)
-
+                callback.onResponse(response)
             },
-            { err -> println(err) })
+            { err -> callback.onError(err) })
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest)
+    }
+
+    fun getRequest(requestType: Int, endUrl: String, callback: VolleyResponseLister) {
+        val stringRequest = JsonObjectRequest(requestType, (startingUrl + endUrl), null,
+            { response ->
+               callback.onResponse(response)
+            },
+            { err -> callback.onError(err) })
         // Add the request to the RequestQueue.
         queue.add(stringRequest)
     }
@@ -50,8 +56,12 @@ class Api(private val context: Context) {
         fun onResponse(result: JSONObject) {}
 
         fun onError(result: VolleyError){}
+    }
 
-        fun setContext(context: Context){}
+    public interface VolleyArrayResponseListener{
+        fun onResponse(result: JSONArray) {}
+
+        fun onError(result: VolleyError){}
     }
 
     /**
