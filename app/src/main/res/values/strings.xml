@@ -11,4 +11,5 @@
     <string name="name">Name</string>
     <string name="send_me_emails_about_the_platform">Send me emails about the platform</string>
     <string name="email">Email</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiZHNhbmRsZXkyMCIsImEiOiJja3VvNXo4b20ycTVrMm9ydXhkczk1bWN6In0.qpZYLwJOyzYTSr9DxK1nWw</string>
 </resources>
