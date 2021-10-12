@@ -83,12 +83,11 @@ class LoginActivity : AppCompatActivity() {
                     )
                 )
         }
-
         job.join()
 
         //goes to the main locations activity
-        //var intent = Intent(this, /*Whatever activity this is going to be called */ )
-        //startActivity(intent)
+        var intent = Intent(this@LoginActivity, LocationActivity::class.java )
+        startActivity(intent)
     }
 
 

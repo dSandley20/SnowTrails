@@ -4,15 +4,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.volley.VolleyError
+import com.example.snowtrails.activities.LocationActivity
 import com.example.snowtrails.activities.LoginActivity
 import com.example.snowtrails.api.Api
 import com.example.snowtrails.databinding.ActivityMainBinding
 import com.example.snowtrails.room.entities.Location
+import com.example.snowtrails.services.AuthService
 import com.example.snowtrails.utils.getDatabase
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import org.json.JSONArray
 import java.util.*
+import java.util.concurrent.LinkedBlockingDeque
+import java.util.concurrent.LinkedBlockingQueue
+import java.util.concurrent.ThreadPoolExecutor
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,15 +27,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //get db instance
-        val db = getDatabase().returnDB(this)
+        //need pool to execute auth helper function
+        val singlePool = ThreadPoolExecutor(1, 1, 3L, TimeUnit.SECONDS, LinkedBlockingQueue())
+        loadLocations()
 
         //check for authenticated user already logged in
-//        if(db.getAuthUserDao().getAll().size > 0){
-//            println("noticed a user is logged in")
-//        }
-
-        loadLocations()
+        GlobalScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT) {
+            if (AuthService().checkAuthUser(this@MainActivity, singlePool)) {
+                val intent = Intent(this@MainActivity, LocationActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
         //action to switch to login/register screen
         binding.loginButton.setOnClickListener {
@@ -40,8 +47,8 @@ class MainActivity : AppCompatActivity() {
 
         //action to switch to locations activity
         binding.goToAppButton.setOnClickListener {
-            //val intent = Intent(this, /*Locations Activity */)
-            //startActivity(intent)
+            val intent = Intent(this, LocationActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -78,13 +85,11 @@ class MainActivity : AppCompatActivity() {
                     location.get("state").toString(),
                     location.get("zipcode").toString()
                 )
+                db.getLocationDao().insertAll(newEntry)
             }
-            db.getLocationDao().insertAll(locationsArray.toList())
         }
-
         job.join()
         println(db.getLocationDao().getAll())
     }
-
 
 }
