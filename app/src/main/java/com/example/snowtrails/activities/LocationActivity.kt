@@ -1,6 +1,7 @@
 package com.example.snowtrails.activities
 
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,8 +24,9 @@ class LocationActivity : AppCompatActivity() {
 
         binding.locationsListView.setOnItemClickListener{ parent, view, position, id ->
             //TODO redirect to site activity
-            Toast.makeText(this, "Clicked item :"+" "+position,Toast.LENGTH_SHORT).show()
-
+            val intent = Intent(this, SelectedActivity::class.java)
+            intent.putExtra("LocationID", id)
+            startActivity(intent)
         }
     }
 }
