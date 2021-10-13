@@ -8,8 +8,10 @@ import com.example.snowtrails.activities.LocationActivity
 import com.example.snowtrails.activities.LoginActivity
 import com.example.snowtrails.api.Api
 import com.example.snowtrails.databinding.ActivityMainBinding
+import com.example.snowtrails.room.entities.Image
 import com.example.snowtrails.room.entities.Location
 import com.example.snowtrails.services.AuthService
+import com.example.snowtrails.services.ImageService
 import com.example.snowtrails.services.LocationService
 import com.example.snowtrails.utils.getDatabase
 import kotlinx.coroutines.*
@@ -58,7 +60,6 @@ class MainActivity : AppCompatActivity() {
         override fun onResponse(result: JSONArray) {
             setLocationsDB(result)
         }
-
         override fun onError(result: VolleyError) {
             println(result)
         }
@@ -76,11 +77,20 @@ class MainActivity : AppCompatActivity() {
 
         val job = launch {
             val locationsArray: MutableList<Location> = mutableListOf()
+            val imagesArray: MutableList<Image> = mutableListOf()
             for (i in 0 until response.length()) {
                 val location = response.getJSONObject(i)
-                val newEntry = LocationService().createLocationEntry(location)
-                db.getLocationDao().insertAll(newEntry)
+                locationsArray.add(LocationService().createLocationEntry(location))
+                imagesArray.addAll(
+                    ImageService().createImageEntry(
+                        location.get("images") as JSONArray,
+                        location.get("id").toString().toInt()
+                    )
+                )
             }
+            //insert into images and locations
+            db.getLocationDao().insertAll(*locationsArray.toTypedArray())
+            db.getImageDao().insertAll(*imagesArray.toTypedArray())
         }
         job.join()
     }
