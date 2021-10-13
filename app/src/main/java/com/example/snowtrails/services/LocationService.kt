@@ -7,6 +7,7 @@ import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
+import org.json.JSONArray
 import org.json.JSONObject
 import java.util.concurrent.ThreadPoolExecutor
 
@@ -26,13 +27,16 @@ class LocationService {
     }
 
     fun createLocationEntry(data : JSONObject) : Location{
+        val images = data.get("images") as JSONArray
+        val firstImage = images.getJSONObject(0)
         return Location(
             data.get("id").toString().toInt(),
             data.get("name").toString(),
             data.get("country").toString(),
             data.get("city").toString(),
             data.get("state").toString(),
-            data.get("zipcode").toString()
+            data.get("zipcode").toString(),
+            firstImage.get("id").toString().toInt()
         )
     }
 

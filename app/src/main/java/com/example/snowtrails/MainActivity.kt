@@ -93,6 +93,7 @@ class MainActivity : AppCompatActivity() {
             db.getImageDao().insertAll(*imagesArray.toTypedArray())
         }
         job.join()
+        println("inHelp:" + db.getLocationDao().getAll())
     }
 
 
