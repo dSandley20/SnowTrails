@@ -10,6 +10,7 @@ import com.example.snowtrails.api.Api
 import com.example.snowtrails.databinding.ActivityMainBinding
 import com.example.snowtrails.room.entities.Location
 import com.example.snowtrails.services.AuthService
+import com.example.snowtrails.services.LocationService
 import com.example.snowtrails.utils.getDatabase
 import kotlinx.coroutines.*
 import org.json.JSONArray
@@ -77,19 +78,12 @@ class MainActivity : AppCompatActivity() {
             val locationsArray: MutableList<Location> = mutableListOf()
             for (i in 0 until response.length()) {
                 val location = response.getJSONObject(i)
-                val newEntry = Location(
-                    location.get("id").toString().toInt(),
-                    location.get("name").toString(),
-                    location.get("country").toString(),
-                    location.get("city").toString(),
-                    location.get("state").toString(),
-                    location.get("zipcode").toString()
-                )
+                val newEntry = LocationService().createLocationEntry(location)
                 db.getLocationDao().insertAll(newEntry)
             }
         }
         job.join()
-        println(db.getLocationDao().getAll())
     }
+
 
 }

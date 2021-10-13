@@ -7,6 +7,7 @@ import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 import java.util.concurrent.ThreadPoolExecutor
 
 class LocationService {
@@ -22,6 +23,17 @@ class LocationService {
         Thread.sleep(1000L)
         val db = getDatabase().returnDB(context).getLocationDao()
         return db.getByID(locationId)
+    }
+
+    fun createLocationEntry(data : JSONObject) : Location{
+        return Location(
+            data.get("id").toString().toInt(),
+            data.get("name").toString(),
+            data.get("country").toString(),
+            data.get("city").toString(),
+            data.get("state").toString(),
+            data.get("zipcode").toString()
+        )
     }
 
 }
