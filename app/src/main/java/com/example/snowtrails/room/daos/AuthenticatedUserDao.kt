@@ -1,15 +1,12 @@
 package com.example.snowtrails.room.daos
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.snowtrails.room.entities.AuthenticatedUser
 import com.example.snowtrails.room.entities.User
 
 @Dao
 interface AuthenticatedUserDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun setAuthUser(AuthUser: AuthenticatedUser)
 
     @Delete

@@ -74,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
             db.getAuthUserDao()
                 .setAuthUser(
                     AuthenticatedUser(
-                        userJson.get("id").toString(),
+                        userJson.get("id").toString().toInt(),
                         userJson.get("firstName").toString(),
                         userJson.get("lastName").toString(),
                         userJson.get("email").toString(),

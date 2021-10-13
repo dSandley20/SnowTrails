@@ -15,7 +15,6 @@ class LocationAdapter(private val context: Activity, private val locations: List
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
        val inflater = context.layoutInflater
        val rowView = inflater.inflate(R.layout.location_list, null, true)
-        println(position)
         val titleText = rowView.findViewById(R.id.title) as TextView
         val imageView = rowView.findViewById(R.id.icon) as ImageView
         val descriptionText = rowView.findViewById(R.id.description) as TextView

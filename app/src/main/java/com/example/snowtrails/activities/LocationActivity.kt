@@ -25,7 +25,7 @@ class LocationActivity : AppCompatActivity() {
         binding.locationsListView.setOnItemClickListener{ parent, view, position, id ->
             //TODO redirect to site activity
             val intent = Intent(this, SelectedActivity::class.java)
-            intent.putExtra("LocationID", id)
+            intent.putExtra("Location", db.getLocationDao().getAll()[position])
             startActivity(intent)
         }
     }

@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             for (i in 0 until response.length()) {
                 val location = response.getJSONObject(i)
                 val newEntry = Location(
-                    location.get("id").toString(),
+                    location.get("id").toString().toInt(),
                     location.get("name").toString(),
                     location.get("country").toString(),
                     location.get("city").toString(),

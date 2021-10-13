@@ -8,7 +8,9 @@
         <entry key="..\:/Users/danie/AndroidStudioProjects/SnowTrails/app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_locations.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.32395833333333335" />
+        <entry key="app/src/main/res/layout/activity_selected.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/activity_selected_location.xml" value="0.18659420289855072" />
+        <entry key="app/src/main/res/layout/fragment_loading.xml" value="0.3482610282850733" />
         <entry key="app/src/main/res/layout/location_list.xml" value="0.4036458333333333" />
       </map>
     </option>

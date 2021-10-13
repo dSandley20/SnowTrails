@@ -14,11 +14,10 @@ class AuthService() {
         }
     }
 
-    suspend fun checkHelper(context: Context) : Boolean  {
+    private suspend fun checkHelper(context: Context) : Boolean  {
         Thread.sleep(1000L)
         val db = getDatabase().returnDB(context).getAuthUserDao()
         var authBoolean : Boolean = false
-        println("All authe: " + db.getAll())
         if(db.getAll().size > 0){
             authBoolean = true
         }
