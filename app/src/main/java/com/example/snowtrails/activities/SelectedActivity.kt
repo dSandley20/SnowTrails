@@ -24,9 +24,8 @@ class SelectedActivity : AppCompatActivity() {
         binding = ActivitySelectedBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val locationID : com.example.snowtrails.room.entities.Location? = intent.getParcelableExtra("Location")
-            //intent.getIntExtra("Location", 0)
-        println("locationID: " +locationID)
+        val locationData : com.example.snowtrails.room.entities.Location? = intent.getParcelableExtra("Location")
+
 
 
     }
