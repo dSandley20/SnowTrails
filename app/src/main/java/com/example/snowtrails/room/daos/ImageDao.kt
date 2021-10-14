@@ -20,6 +20,6 @@ interface ImageDao {
         fun getByID(id: Int) : Image
 
         @Query("SELECT * FROM image WHERE locationId = :id")
-        fun getByLocationID(id: Int) : Image
+        fun getByLocationID(id: Int) : List<Image>
 
 }
