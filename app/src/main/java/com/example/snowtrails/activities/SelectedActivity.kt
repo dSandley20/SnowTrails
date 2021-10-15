@@ -8,6 +8,7 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.example.snowtrails.R
 import com.example.snowtrails.databinding.ActivitySelectedBinding
+import com.example.snowtrails.fragments.ChatLocationFragment
 import com.example.snowtrails.fragments.MainLocationFragment
 import com.example.snowtrails.fragments.MapLocationFragment
 
@@ -39,6 +40,10 @@ class SelectedActivity : AppCompatActivity() {
         binding.mapLocationButton.setOnClickListener {
             goToMapFragment(bundle)
         }
+
+        binding.locationChatButton.setOnClickListener {
+            goToChatFragment(bundle)
+        }
     }
 
     private fun goToMainFragment(bundle: Bundle){
@@ -55,8 +60,11 @@ class SelectedActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToChatFragment(){
-
+    private fun goToChatFragment(bundle: Bundle){
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            replace<ChatLocationFragment>(R.id.location_fragment_container, args = bundle)
+        }
     }
 
 
