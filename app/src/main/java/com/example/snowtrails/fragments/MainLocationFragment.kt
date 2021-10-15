@@ -28,8 +28,6 @@ class MainLocationFragment : Fragment(R.layout.main_location_fragment) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //inflater.inflate(R.layout.main_location_fragment, container, false)
-
         return inflater.inflate(R.layout.main_location_fragment, container, false)
     }
 

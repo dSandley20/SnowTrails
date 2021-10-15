@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/layout/location_image_item.xml" value="0.3890625" />
         <entry key="app/src/main/res/layout/location_list.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/main_location_fragment.xml" value="0.3890625" />
+        <entry key="app/src/main/res/layout/map_location_fragment.xml" value="0.15353260869565216" />
       </map>
     </option>
   </component>
