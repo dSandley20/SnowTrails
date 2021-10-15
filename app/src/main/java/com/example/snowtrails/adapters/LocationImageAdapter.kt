@@ -25,7 +25,7 @@ class LocationImageAdapter(var list: List<Image>, var ctx: Context) : PagerAdapt
         val imageView = view.findViewById(R.id.ItemImage) as ImageView
         val imageId = list[position].id
         Picasso.get().invalidate("http://10.0.2.2:8080/images/$imageId")
-        Picasso.get().load("http://10.0.2.2:8080/images/$imageId").placeholder(R.drawable.ic_launcher_background).into(imageView)
+        Picasso.get().load("http://10.0.2.2:8080/images/$imageId").fit().placeholder(R.drawable.ic_launcher_background).into(imageView)
         container.addView(view,0)
         return view
 

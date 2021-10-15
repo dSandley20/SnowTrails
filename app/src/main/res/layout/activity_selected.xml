@@ -6,36 +6,84 @@
     android:layout_height="match_parent">
 
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/locationImageSlider"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="?android:attr/listDivider"
-        android:divider="@color/dividerColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/locationImageSlider"
-        tools:layout_editor_absoluteY="250dp" />
-
-    <LinearLayout
-        android:id="@+id/location_details"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/location_selected_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/divider"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_marginTop="-6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/location_main_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/location"
+            app:backgroundTint="@color/primary"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_guideline_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="?attr/shapeAppearanceLargeComponent"
+            app:strokeColor="@color/accentTwo"
+            app:strokeWidth="2dp"
+            />
+
+        <Button
+            android:id="@+id/map_location_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/map"
+            app:backgroundTint="@color/primary"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_guideline_2"
+            app:layout_constraintStart_toEndOf="@+id/vertical_guideline_1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="?attr/shapeAppearanceLargeComponent"
+            app:strokeColor="@color/accentTwo"
+            app:strokeWidth="2dp"/>
+
+        <Button
+            android:id="@+id/location_chat_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/chat"
+            app:backgroundTint="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vertical_guideline_2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="?attr/shapeAppearanceLargeComponent"
+            app:strokeColor="@color/accentTwo"
+            app:strokeWidth="2dp"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.33" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.66" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/location_fragment_container"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/location_selected_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
 
 
 

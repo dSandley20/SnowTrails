@@ -14,4 +14,7 @@
     <string name="mapbox_access_token">pk.eyJ1IjoiZHNhbmRsZXkyMCIsImEiOiJja3VvNXo4b20ycTVrMm9ydXhkczk1bWN6In0.qpZYLwJOyzYTSr9DxK1nWw</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="chat">Chat</string>
+    <string name="map">Map</string>
+    <string name="location">Location</string>
 </resources>
