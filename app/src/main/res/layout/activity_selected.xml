@@ -79,7 +79,8 @@
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/location_selected_navigation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="-5.3dp"/>
 
 
 

@@ -17,7 +17,7 @@ class LocationCommentAdapter(private val context: Activity, private val comments
         val rowView = inflater.inflate(R.layout.comment_list, null, true)
 
         val titleText = rowView.findViewById(R.id.title) as TextView
-        val imageView = rowView.findViewById(R.id.icon) as ImageView
+        //val imageView = rowView.findViewById(R.id.icon) as ImageView
         val descriptionText = rowView.findViewById(R.id.description) as TextView
 
         titleText.text = "user name goes here"
