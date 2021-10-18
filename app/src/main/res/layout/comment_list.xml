@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@drawable/linear_layout_bg">
 
         <ImageView
             android:id="@+id/icon"
@@ -25,7 +26,7 @@
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="115dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginLeft="15dp"
@@ -35,7 +36,7 @@
 
             <TextView
                 android:id="@+id/description"
-                android:layout_width="115dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginLeft="15dp"

@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.android.volley.VolleyError
 import com.example.snowtrails.R
+import com.example.snowtrails.adapters.LocationCommentAdapter
 import com.example.snowtrails.adapters.LocationImageAdapter
 import com.example.snowtrails.api.Api
 import com.example.snowtrails.room.entities.Location
+import com.example.snowtrails.services.LocationService
 import com.example.snowtrails.utils.getDatabase
 import com.example.snowtrails.viewmodels.MainLocationViewModel
 import kotlinx.android.synthetic.main.main_location_fragment.*
@@ -49,8 +51,11 @@ class MainLocationFragment : Fragment(R.layout.main_location_fragment) {
     //Callback Object to get data from the API class and bring it into main
     private val obj = object : Api.VolleyArrayResponseListener {
         override fun onResponse(result: JSONArray) {
-            //populate location comment list view
-
+            val locationData : Location = requireArguments().get("location_data") as Location
+            println("inFrag: " + locationData)
+            println("inFrag: " + LocationService().createCommentArray(result, locationData!!.id))
+            val commentAdapter = LocationCommentAdapter(requireActivity(), LocationService().createCommentArray(result, locationData!!.id) )
+            commentListView.adapter = commentAdapter
         }
         override fun onError(result: VolleyError) {
             println(result)
@@ -60,6 +65,8 @@ class MainLocationFragment : Fragment(R.layout.main_location_fragment) {
     //makes API request to get locations from API
     private fun loadComments(locationId : Int) {
         var api = Api(requireContext())
+        println("inFrag2: " + locationId)
+        println("inFrag3: " +"/comments/location/$locationId")
         api.getRequestArray(api.getRequestType("GET"), "/comments/location/$locationId", obj)
     }
 
