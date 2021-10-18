@@ -23,14 +23,15 @@ class getPubnub {
         return "all-chat-location-$locationId"
     }
 
-    suspend fun createMessage(context: Context, scheduler: ThreadPoolExecutor, content:String) = coroutineScope {
-        withContext(scheduler.asCoroutineDispatcher()){
-            val a = async { createMessageHelper(content, context) }
-            a.await()
+    suspend fun createMessage(context: Context, scheduler: ThreadPoolExecutor, content: String) =
+        coroutineScope {
+            withContext(scheduler.asCoroutineDispatcher()) {
+                val a = async { createMessageHelper(content, context) }
+                a.await()
+            }
         }
-    }
 
-    suspend fun createMessageHelper(content: String, context:Context) : JsonObject {
+    suspend fun createMessageHelper(content: String, context: Context): JsonObject {
         val user = getDatabase().returnDB(context).getAuthUserDao().getAll()[0]
         return JsonObject().apply {
             addProperty("msg", content)
@@ -39,17 +40,23 @@ class getPubnub {
         }
     }
 
-    fun subscribeToChannels(pubnub: PubNub, locationChannel: String){
+    fun subscribeToChannels(pubnub: PubNub, locationChannel: String) {
         pubnub.subscribe(
             channels = listOf(locationChannel)
         )
     }
 
-    fun sendMessage(context: Context,pubnub: PubNub, locationChannel : String, singlePool: ThreadPoolExecutor){
+    fun sendMessage(
+        context: Context,
+        pubnub: PubNub,
+        locationChannel: String,
+        singlePool: ThreadPoolExecutor,
+        content: String
+    ) {
         GlobalScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT) {
             pubnub.publish(
                 channel = locationChannel,
-                message = getPubnub().createMessage(context, singlePool,"tese"  )
+                message = getPubnub().createMessage(context, singlePool, content)
             ).async { result, status ->
                 println(status)
                 if (!status.error) {
