@@ -75,10 +75,10 @@ class LoginActivity : AppCompatActivity() {
                 .setAuthUser(
                     AuthenticatedUser(
                         userJson.get("id").toString().toInt(),
-                        userJson.get("firstName").toString(),
-                        userJson.get("lastName").toString(),
-                        userJson.get("email").toString(),
-                        userJson.get("userName").toString(),
+                        userJson.get("firstName").toString().substring(1,userJson.get("firstName").toString().length-1 ),
+                        userJson.get("lastName").toString().substring(1,userJson.get("lastName").toString().length-1 ),
+                        userJson.get("email").toString().substring(1,userJson.get("email").toString().length-1 ),
+                        userJson.get("userName").toString().substring(1,userJson.get("userName").toString().length-1 ),
                         stringJWT
                     )
                 )
