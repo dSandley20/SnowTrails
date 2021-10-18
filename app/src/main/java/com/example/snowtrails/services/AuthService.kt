@@ -17,11 +17,17 @@ class AuthService() {
     private suspend fun checkHelper(context: Context) : Boolean  {
         Thread.sleep(1000L)
         val db = getDatabase().returnDB(context).getAuthUserDao()
-        var authBoolean : Boolean = false
-        if(db.getAll().size > 0){
-            authBoolean = true
-        }
-        return authBoolean
+        return db.getAll().size > 0
     }
 
+    suspend fun checkIsMe(context: Context, scheduler: ThreadPoolExecutor ,userId: Int) = coroutineScope{
+        withContext(scheduler.asCoroutineDispatcher()){
+            val a = async { checkIsMeHelper(context, userId) }
+            a.await()
+        }
+    }
+    private suspend fun checkIsMeHelper(context: Context, userId : Int) : Boolean{
+        val user = getDatabase().returnDB(context).getAuthUserDao().getAll()[0]
+        return user.id == userId
+    }
 }
