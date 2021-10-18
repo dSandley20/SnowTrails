@@ -11,10 +11,14 @@
     <string name="name">Name</string>
     <string name="send_me_emails_about_the_platform">Send me emails about the platform</string>
     <string name="email">Email</string>
-    <string name="mapbox_access_token">pk.eyJ1IjoiZHNhbmRsZXkyMCIsImEiOiJja3VvNXo4b20ycTVrMm9ydXhkczk1bWN6In0.qpZYLwJOyzYTSr9DxK1nWw</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="chat">Chat</string>
     <string name="map">Map</string>
     <string name="location">Location</string>
+    <!-- Variables for Pubnub and Mapbox -->
+    <string name="mapbox_access_token">pk.eyJ1IjoiZHNhbmRsZXkyMCIsImEiOiJja3VvNXo4b20ycTVrMm9ydXhkczk1bWN6In0.qpZYLwJOyzYTSr9DxK1nWw</string>
+    <string name="pubnub_subscribe_key">sub-c-60132bbe-2db5-11eb-ae78-c6faad964e01</string>
+    <string name="pubnub_publish_key">pub-c-b14568ea-46b8-4e7d-8531-d46016512883</string>
+    <string name="pubnub_uuid">SnowTrailsPubnub</string>
 </resources>

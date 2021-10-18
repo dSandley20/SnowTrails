@@ -52,8 +52,6 @@ class MainLocationFragment : Fragment(R.layout.main_location_fragment) {
     private val obj = object : Api.VolleyArrayResponseListener {
         override fun onResponse(result: JSONArray) {
             val locationData : Location = requireArguments().get("location_data") as Location
-            println("inFrag: " + locationData)
-            println("inFrag: " + LocationService().createCommentArray(result, locationData!!.id))
             val commentAdapter = LocationCommentAdapter(requireActivity(), LocationService().createCommentArray(result, locationData!!.id) )
             commentListView.adapter = commentAdapter
         }
@@ -65,8 +63,6 @@ class MainLocationFragment : Fragment(R.layout.main_location_fragment) {
     //makes API request to get locations from API
     private fun loadComments(locationId : Int) {
         var api = Api(requireContext())
-        println("inFrag2: " + locationId)
-        println("inFrag3: " +"/comments/location/$locationId")
         api.getRequestArray(api.getRequestType("GET"), "/comments/location/$locationId", obj)
     }
 
