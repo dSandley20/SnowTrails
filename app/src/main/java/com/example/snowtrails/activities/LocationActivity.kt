@@ -26,6 +26,10 @@ class LocationActivity : AppCompatActivity() {
             //TODO redirect to site activity
             val intent = Intent(this, SelectedActivity::class.java)
             intent.putExtra("Location", db.getLocationDao().getAll()[position])
+            intent.putExtra("isLoggedIn", db.getAuthUserDao().getAll().isNotEmpty())
+            if(db.getAuthUserDao().getAll().isNotEmpty()) {
+                intent.putExtra("authUser", db.getAuthUserDao().getAll()[0])
+            }
             startActivity(intent)
         }
     }
