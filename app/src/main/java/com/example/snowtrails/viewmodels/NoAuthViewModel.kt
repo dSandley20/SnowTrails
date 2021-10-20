@@ -1,4 +1,4 @@
-package com.example.snowtrails.fragments
+package com.example.snowtrails.viewmodels
 
 import androidx.lifecycle.ViewModel
 
