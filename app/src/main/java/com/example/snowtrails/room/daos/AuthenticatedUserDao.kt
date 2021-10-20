@@ -7,11 +7,11 @@ import com.example.snowtrails.room.entities.User
 @Dao
 interface AuthenticatedUserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun setAuthUser(AuthUser: AuthenticatedUser)
+    fun setAuthUser(AuthUser: AuthenticatedUser)
 
     @Delete
-    suspend fun deleteAuthUser(AuthUser: AuthenticatedUser)
+    fun deleteAuthUser(AuthUser: AuthenticatedUser)
 
     @Query("SELECT * FROM authenticateduser")
-    suspend fun getAll(): List<AuthenticatedUser>
+    fun getAll(): List<AuthenticatedUser>
 }

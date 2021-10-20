@@ -1,9 +1,12 @@
 package com.example.snowtrails.room.entities
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity
 data class AuthenticatedUser(
     @PrimaryKey val id: Int,
@@ -12,5 +15,5 @@ data class AuthenticatedUser(
     val email: String,
     @ColumnInfo(name = "user_name") val userName: String,
     val jwt: String
-) {
+) : Parcelable {
 }
