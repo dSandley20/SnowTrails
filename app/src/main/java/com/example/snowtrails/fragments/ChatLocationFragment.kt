@@ -9,7 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.snowtrails.R
 import com.example.snowtrails.activities.LocationActivity
+import com.example.snowtrails.adapters.ChatAdapter
 import com.example.snowtrails.databinding.ChatLocationFragmentBinding
+import com.example.snowtrails.room.entities.AuthenticatedUser
+import com.example.snowtrails.room.entities.Chat
 import com.example.snowtrails.room.entities.Location
 import com.example.snowtrails.services.AuthService
 import com.example.snowtrails.services.PoolService
@@ -46,7 +49,12 @@ class ChatLocationFragment : Fragment() {
         _binding = ChatLocationFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         val locationData: Location = requireArguments().get("location_data") as Location
+        val authData: AuthenticatedUser = requireArguments().get("authUser") as AuthenticatedUser
         val locationChannel = getPubnub().returnLocationChannel(locationData!!.id)
+        //setting up chat adapter to display everything properly
+        var chatArray = mutableListOf<Chat>()
+        val chatAdapter = ChatAdapter(requireActivity(), chatArray)
+        binding.chatsListView.adapter = chatAdapter
         //create pubnub object
         val pubnub = createPubNubClient()
 
@@ -71,19 +79,21 @@ class ChatLocationFragment : Fragment() {
             override fun message(pubnub: PubNub, pnMessageResult: PNMessageResult) {
                 if (pnMessageResult.channel == locationChannel) {
                     println("Received message ${pnMessageResult.message.asJsonObject}")
-                    GlobalScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT) {
-                        if (AuthService().checkIsMe(
-                                requireContext(),
-                                PoolService().getSinglePool(),
-                                pnMessageResult.message.asJsonObject.get("userId").toString()
-                                    .toInt()
+                    getActivity()?.runOnUiThread {
+                        val tempMessage = pnMessageResult.message.asJsonObject
+                        chatAdapter.add(
+                            Chat(
+                                tempMessage.get("sentUserId").toString().toInt(),
+                                authData.id,
+                                tempMessage.get("userName").toString(),
+                                tempMessage.get("msg").toString()
                             )
-                        ) {
-                            //add to right side
-                        } else {
-                            //add to left side
-                        }
+                        )
+                        chatAdapter.notifyDataSetChanged()
+                        binding.chatsListView.setSelection(chatAdapter.count -1)
                     }
+
+
                 }
             }
         })
