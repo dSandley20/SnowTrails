@@ -11,10 +11,13 @@
         <entry key="app/src/main/res/drawable/linear_layout_bg.xml" value="0.14427083333333332" />
         <entry key="app/src/main/res/drawable/location_navigation_button_bg.xml" value="0.40520833333333334" />
         <entry key="app/src/main/res/drawable/my_button.xml" value="0.40520833333333334" />
-        <entry key="app/src/main/res/layout/activity_locations.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/drawable/shape_bg_incoming.xml" value="0.19722222222222222" />
+        <entry key="app/src/main/res/drawable/shape_bg_outgoing.xml" value="0.19722222222222222" />
+        <entry key="app/src/main/res/layout/activity_locations.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.32395833333333335" />
         <entry key="app/src/main/res/layout/activity_selected.xml" value="0.16326530612244897" />
         <entry key="app/src/main/res/layout/activity_selected_location.xml" value="0.18659420289855072" />
+        <entry key="app/src/main/res/layout/chat_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/chat_location_fragment.xml" value="0.189209726443769" />
         <entry key="app/src/main/res/layout/comment_list.xml" value="0.27708333333333335" />
         <entry key="app/src/main/res/layout/fragment_loading.xml" value="0.3482610282850733" />
@@ -22,6 +25,7 @@
         <entry key="app/src/main/res/layout/location_list.xml" value="0.22" />
         <entry key="app/src/main/res/layout/main_location_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/map_location_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/no_auth_fragment.xml" value="0.22" />
       </map>
     </option>
   </component>
