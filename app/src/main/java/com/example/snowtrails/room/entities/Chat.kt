@@ -1,4 +1,5 @@
 package com.example.snowtrails.room.entities
 
-class Chat {
+
+class Chat(val sentUserId: Int, val storedUserId: Int, val userName: String, val content: String) {
 }
