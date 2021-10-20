@@ -21,4 +21,5 @@
     <string name="pubnub_subscribe_key">sub-c-60132bbe-2db5-11eb-ae78-c6faad964e01</string>
     <string name="pubnub_publish_key">pub-c-b14568ea-46b8-4e7d-8531-d46016512883</string>
     <string name="pubnub_uuid">SnowTrailsPubnub</string>
+    <string name="please_login_before_using_chat">Please login before using chat</string>
 </resources>
