@@ -23,7 +23,7 @@ class getPubnub {
         return "all-chat-location-$locationId"
     }
 
-    suspend fun createMessage(context: Context, scheduler: ThreadPoolExecutor, content: String) =
+    private suspend fun createMessage(context: Context, scheduler: ThreadPoolExecutor, content: String) =
         coroutineScope {
             withContext(scheduler.asCoroutineDispatcher()) {
                 val a = async { createMessageHelper(content, context) }
@@ -31,11 +31,11 @@ class getPubnub {
             }
         }
 
-    suspend fun createMessageHelper(content: String, context: Context): JsonObject {
+    private suspend fun createMessageHelper(content: String, context: Context): JsonObject {
         val user = getDatabase().returnDB(context).getAuthUserDao().getAll()[0]
         return JsonObject().apply {
             addProperty("msg", content)
-            addProperty("userId", user.id)
+            addProperty("sentUserId", user.id)
             addProperty("userName", user.userName)
         }
     }

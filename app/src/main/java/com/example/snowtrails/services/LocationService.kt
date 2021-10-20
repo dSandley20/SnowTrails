@@ -51,12 +51,6 @@ class LocationService {
         for (i in 0 until data.length()) {
             val tempData = data.getJSONObject(i)
 
-            println("inService: " + Comment(
-                tempData.get("id").toString().toInt(),
-                locationId,
-                tempData.get("content").toString()
-            ) )
-
             comments.add(
                 Comment(
                     tempData.get("id").toString().toInt(),
@@ -64,7 +58,6 @@ class LocationService {
                     tempData.get("content").toString()
                 )
             )
-            println("inService2: " +comments)
         }
 
         return Collections.unmodifiableList(comments)
