@@ -31,6 +31,17 @@
             app:layout_constraintEnd_toEndOf="@+id/tempTextField"
             app:layout_constraintStart_toStartOf="@+id/tempTextField"
             app:layout_constraintTop_toBottomOf="@+id/tempTextField" />
+
+        <ListView
+            android:id="@+id/chatsListView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tempSendMessage"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10.0sp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
