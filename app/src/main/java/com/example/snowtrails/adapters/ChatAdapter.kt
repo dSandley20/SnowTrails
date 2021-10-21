@@ -1,40 +1,81 @@
 package com.example.snowtrails.adapters
 
 import android.app.Activity
+import android.content.Context
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.snowtrails.R
 import com.example.snowtrails.room.entities.Chat
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.chat_location_fragment.view.*
+import kotlinx.android.synthetic.main.my_chat.view.*
+import kotlinx.android.synthetic.main.other_chat.view.*
 
-class ChatAdapter(private val context: Activity, private val chats: MutableList<Chat>) :
-    ArrayAdapter<Chat>(context, R.layout.chat_list, chats) {
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val inflater = context.layoutInflater
-        val rowView = inflater.inflate(R.layout.chat_list, null, true)
+private const val VIEW_TYPE_MY_MESSAGE = 1
+private const val VIEW_TYPE_OTHER_MESSAGE = 2
 
-        val chatContainer = rowView.findViewById(R.id.chat_container) as LinearLayout
-        val backgroundResource = rowView.findViewById(R.id.chat_bubble_layout) as LinearLayout
-        val titleText = rowView.findViewById(R.id.title) as TextView
-        val descriptionText = rowView.findViewById(R.id.description) as TextView
+class ChatAdapter(val context : Context) : RecyclerView.Adapter<MessageViewHolder>(){
+    private val messages : ArrayList<Chat> = ArrayList()
 
-        titleText.text = chats[position].userName.substring(1,chats[position].userName.length-1 )
-        descriptionText.text = chats[position].content.substring(1,chats[position].content.length-1 )
-
-        if(chats[position].sentUserId == chats[position].storedUserId){
-
-            backgroundResource.setBackgroundResource(R.drawable.shape_bg_outgoing)
-        }else{
-
-            backgroundResource.setBackgroundResource(R.drawable.shape_bg_incoming)
-        }
-
-
-        return rowView
+    fun addChat(message: Chat){
+        messages.add(message)
+        notifyDataSetChanged()
     }
+
+    override fun getItemCount(): Int {
+        return messages.size
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        val message = messages.get(position)
+        return if(message.sentUserId == message.storedUserId){
+            VIEW_TYPE_MY_MESSAGE
+        }else{
+            VIEW_TYPE_OTHER_MESSAGE
+        }
+    }
+
+    override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
+        val message = messages.get(position)
+        holder?.bind(message)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
+        return if (viewType == VIEW_TYPE_MY_MESSAGE){
+            MyMessageViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.my_chat, parent, false)
+            )
+        }else{
+            OtherMessageViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.other_chat, parent, false)
+            )
+        }
+    }
+
+    class MyMessageViewHolder(view: View) : MessageViewHolder(view){
+        private var messageText : TextView = view.txtMyMessage
+
+        override fun bind(message: Chat) {
+            messageText.text = message.content
+        }
+}
+    class OtherMessageViewHolder(view: View) : MessageViewHolder(view){
+        private var messageText: TextView = view.txtOtherMessage
+
+        override fun bind(message: Chat) {
+            messageText.text = message.content
+        }
+    }
+}
+
+
+open class MessageViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+    open fun bind(message:Chat) {}
 }

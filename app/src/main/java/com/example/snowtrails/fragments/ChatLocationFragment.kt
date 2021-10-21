@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.snowtrails.R
 import com.example.snowtrails.activities.LocationActivity
 import com.example.snowtrails.adapters.ChatAdapter
@@ -46,15 +48,19 @@ class ChatLocationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        getActivity()?.getWindow()?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         _binding = ChatLocationFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         val locationData: Location = requireArguments().get("location_data") as Location
         val authData: AuthenticatedUser = requireArguments().get("authUser") as AuthenticatedUser
         val locationChannel = getPubnub().returnLocationChannel(locationData!!.id)
         //setting up chat adapter to display everything properly
-        var chatArray = mutableListOf<Chat>()
-        val chatAdapter = ChatAdapter(requireActivity(), chatArray)
-        binding.chatsListView.adapter = chatAdapter
+        binding.messageList.setHasFixedSize(true)
+        val chatAdapter = ChatAdapter(requireContext())
+        binding.messageList.adapter = chatAdapter
+        //
+
         //create pubnub object
         val pubnub = createPubNubClient()
 
@@ -81,7 +87,7 @@ class ChatLocationFragment : Fragment() {
                     println("Received message ${pnMessageResult.message.asJsonObject}")
                     getActivity()?.runOnUiThread {
                         val tempMessage = pnMessageResult.message.asJsonObject
-                        chatAdapter.add(
+                        chatAdapter.addChat(
                             Chat(
                                 tempMessage.get("sentUserId").toString().toInt(),
                                 authData.id,
@@ -89,8 +95,8 @@ class ChatLocationFragment : Fragment() {
                                 tempMessage.get("msg").toString()
                             )
                         )
-                        chatAdapter.notifyDataSetChanged()
-                        binding.chatsListView.setSelection(chatAdapter.count -1)
+
+                        binding.messageList.scrollToPosition(chatAdapter.itemCount - 1)
                     }
 
 
@@ -99,13 +105,13 @@ class ChatLocationFragment : Fragment() {
         })
         getPubnub().subscribeToChannels(pubnub, locationChannel)
 
-        binding.tempSendMessage.setOnClickListener {
+        binding.btnSend.setOnClickListener {
             getPubnub().sendMessage(
                 requireContext(),
                 pubnub,
                 locationChannel,
                 PoolService().getSinglePool(),
-                binding.tempTextField.text.toString()
+                binding.txtMessage.text.toString()
             )
         }
 
