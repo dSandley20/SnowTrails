@@ -63,14 +63,14 @@ class ChatAdapter(val context : Context) : RecyclerView.Adapter<MessageViewHolde
         private var messageText : TextView = view.txtMyMessage
 
         override fun bind(message: Chat) {
-            messageText.text = message.content
+            messageText.text = message.content.substring(1,message.content.length-1 )
         }
 }
     class OtherMessageViewHolder(view: View) : MessageViewHolder(view){
         private var messageText: TextView = view.txtOtherMessage
 
         override fun bind(message: Chat) {
-            messageText.text = message.content
+            messageText.text = message.content.substring(1,message.content.length-1 )
         }
     }
 }
