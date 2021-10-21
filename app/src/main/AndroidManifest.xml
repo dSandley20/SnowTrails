@@ -29,7 +29,8 @@
         <activity android:name=".activities.LocationActivity"
             android:exported="true"/>
         <activity android:name=".activities.SelectedActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>
